@@ -9,13 +9,18 @@
     <h1>Spagheti PHP!!</h1>
     <?php
     //Necesario para cargar las dependencias
-    require 'vendor/autoload.php';
+    require '../vendor/autoload.php';
     //Libreria "Carbon" para generar fechas
     use Carbon\Carbon;
     //Uso de mi propio espacio de nombres para no entrar en coflicto con las dependencias
     use Lib\Breadcrumbs;
     //Uso de mi ADAPTADOR
     use Lib\Dates;
+    //Uso templates
+    use League\Plates\Engine;
+
+    $templates = new Engine('../views');
+
     //Utilizamos los métodos de la clase Carbon de la libreria para generar fecha 
     //del día de mañana
     $date = Carbon::now();
@@ -47,5 +52,8 @@
     lo vamos a solucionar.
     </p>
 
+    <?= $templates->render('template-test', [
+        'subtitle' => 'Bienvenidos a EscuelaIT'
+    ]); ?>
 </body>
 </html>
